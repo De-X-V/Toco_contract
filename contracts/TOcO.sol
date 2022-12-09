@@ -15,4 +15,20 @@ contract ProjectFunding {
         Status fundingState; // 펀딩 상태
     }   
     
+    // 펀딩 설정
+    function setFunding( // 펀딩 생성 시 입력할 값
+        string memory _fundingName, // 펀딩 이름
+        uint _targetAmount, // 목표 모금액
+        uint _fundingStartDate, // 펀딩 시작일 설정 : 지금으로부터 며칠 뒤에 시작할건지 예) 3 입력하면 3일 뒤부터 시작
+        uint _fundingDays // 펀딩 진행 일 수 예) 30 입력하면 시작일로부터 30일 동안 진행
+    ) public {
+        funding memory newFunding = funding({
+            fundingName: _fundingName,
+            targetAmount: _targetAmount,
+            currentAmount: 0,
+            fundingStartDate: block.timestamp + _fundingStartDate * 1 days,
+            fundingEndDate: _fundingStartDate + _fundingDays * 1 days,
+            fundingState: Status.not_started
+        });
+    }
 }
