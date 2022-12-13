@@ -24,6 +24,11 @@ contract Administrator {
 
 // 프로젝트 펀딩 컨트랙트
 contract ProjectFunding {
+
+    Administrator public admin;
+    constructor(address _adminAddr) {
+        admin = Administrator(_adminAddr);
+    }
     
     enum Status { in_progress, done, not_started }
     
@@ -51,5 +56,8 @@ contract ProjectFunding {
             fundingEndDate: _fundingStartDate + _fundingDays * 1 days,
             fundingState: Status.not_started
         });
+
+        // 운영진 컨트랙트에 만든 펀딩 추가
+        admin.registerPFunding();
     }
 }
