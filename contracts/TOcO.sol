@@ -1,6 +1,27 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+// 운영진 컨트랙트
+contract Administrator {
+    struct pFunding {
+        address addr;
+        // 추가로 더 들어갈 수 있음
+    }
+
+    mapping (address => pFunding) pFundingList;
+    ProjectFunding public pF;
+
+    // 프로젝트 펀딩 등록 - 프로젝트 펀딩 컨트랙트에서 펀딩 생성 시 작동
+    function registerPFunding() public {
+        pF = ProjectFunding(msg.sender);
+        pFundingList[msg.sender] = pFunding( // msg.sender는 각 프로젝트 펀딩 컨트랙트 주소
+            msg.sender
+
+            );
+    }
+
+}
+
 // 프로젝트 펀딩 컨트랙트
 contract ProjectFunding {
     
