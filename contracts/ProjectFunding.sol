@@ -56,10 +56,10 @@ contract ProjectFunding {
     // 기부 리스트
     mapping (address => uint) public donateList; // 각 펀딩 마다 기부한 사람 주소와 금액 알 수 있음
 
-    // 기부하는 기능 
+    // 기부하는 기능 - wei 단위로
     function donate(uint _amount) public payable { // 각 펀딩 컨트랙트에 기부금이 쌓임
         // 기부금이 0원 이상, 입력값이랑 같은지 확인
-        require(msg.value > 0 && msg.value == _amount * 10 ** 18);
+        require(msg.value > 0 && msg.value == _amount);
         // 현재 시간이 기부 시작일과 종료일 사이 인지 확인
         require(block.timestamp > newFunding.fundingStartDate && block.timestamp < newFunding.fundingEndDate);
         // 기부
