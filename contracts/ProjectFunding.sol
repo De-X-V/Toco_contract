@@ -45,7 +45,7 @@ contract ProjectFunding {
         });
 
         // 운영진 컨트랙트에 만든 펀딩 추가
-        admin.registerPFunding(newFunding);
+        admin.registerPFunding();
     }
 
     // 펀딩 정보 출력하는 함수 -> tuple로 출력
