@@ -1,9 +1,6 @@
 const Web3 = require("web3");
-const web3 = new Web3(
-  "https://goerli.infura.io/v3/e7e63350a02446cd83ab4073d9c266d4"
-);
-const privatekey =
-  "b184a24d648059951744a7e7767eed36df31475a0d92db1f82894ebfe075edf4";
+const web3 = new Web3("");
+const privatekey = "";
 web3.eth.accounts.privateKeyToAccount(privatekey);
 const account = web3.eth.accounts.privateKeyToAccount(privatekey);
 web3.eth.defaultAccount = account.address;
