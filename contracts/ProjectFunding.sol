@@ -79,8 +79,8 @@ contract ProjectFunding {
     }
 
     // 나의 기부액 출력
-    function getMyDonateAmount() public view returns (uint) {
-        return donateList[msg.sender];
+    function getMyDonateAmount(address _user) public view returns (uint) {
+        return donateList[_user];
     }
 
     // 컨트랙트 쌓인 잔고 출금 함수 (오직 owner만)
