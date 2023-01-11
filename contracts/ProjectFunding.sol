@@ -25,20 +25,23 @@ contract ProjectFunding {
         string fundingName; // 펀딩 이름
         uint fundingStartDate; // 펀딩 시작일(unix time) 
         uint fundingEndDate; // 펀딩 종료일(unix time) 
+        string docId; // DB의 ID
     }   
 
     funding public newFunding; // funding구조체형 변수 newFunding 선언
     
     // 펀딩 설정
     function setFunding( // 펀딩 생성 시 입력할 값
-        string memory _fundingName, // 펀딩 이름
+        string memory _fundingName,
         uint _fundingStartDate, 
-        uint _fundingEndDate 
+        uint _fundingEndDate,
+        string memory _docId
     ) public {
         newFunding = funding({
             fundingName: _fundingName,
             fundingStartDate: _fundingStartDate,
-            fundingEndDate: _fundingEndDate
+            fundingEndDate: _fundingEndDate,
+            docId: _docId
         });
     }
 
@@ -66,7 +69,7 @@ contract ProjectFunding {
         admin.setDonator(msg.sender);
         // 최초 한 번만 리스트에 해당 펀딩 추가
         if(donateList[msg.sender] == 0) {
-            admin.addDonatedPFList(msg.sender);
+            admin.addDonatedPFList(msg.sender, newFunding.docId);
         }
         
         // 기부
